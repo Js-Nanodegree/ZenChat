@@ -1,8 +1,8 @@
-import  express from 'express';
+import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { schema } from './schema';
 import { resolvers } from './resolver'
-import {initializeApp} from "firebase/app";
+import { initializeApp } from "firebase/app";
 
 const app = express();
 
@@ -33,6 +33,6 @@ app.get("/rest", function (req, res) {
   res.json({ data: "api working" });
 });
 
-app.listen({ port: 8000 }, () => {
+app.listen({ port: process.env.PORT || 8000,host:process.env.HOST || "0.0.0.0"}, () => {
   console.log('Apollo Server on http://localhost:8000/graphql');
 });
