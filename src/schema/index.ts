@@ -80,7 +80,7 @@ export const schema = gql`
     channel:String
     message:String
     sharedMessage:SharedMessageInput
-    write:Int
+    write:String
   }
 
   type Mutation {
