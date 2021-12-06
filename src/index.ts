@@ -23,6 +23,7 @@ async function startServer() {
   apolloServer = new ApolloServer({
     typeDefs: schema,
     resolvers,
+    introspection:true
   });
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
