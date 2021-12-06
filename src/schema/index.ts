@@ -8,14 +8,14 @@ export const schema = gql`
   }
 
   input WorkShopInput {
-    id: Int
+    id: String
     name: String
     phone: String
     address: String
   }
 
   input WorkShopMemberInput {
-    id: Int
+    id: String
     name: MemberUser
     phone: String
   }
@@ -94,7 +94,7 @@ export const schema = gql`
 
   type Channel {
     appealId:Int
-    clientId:Int
+    clientId:String
     idChannel: String!
     members: [UserClient]
     workshop:[Garage]
@@ -111,7 +111,7 @@ export const schema = gql`
   }
 
   type UserClient {
-    id: Int
+    id: String
     name: NameClient
     phone: String
   }
