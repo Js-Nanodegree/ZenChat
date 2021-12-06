@@ -13,7 +13,6 @@ export interface iWorkShopInput {
   id: Number;
   name?: String;
   phone?: String;
-  members?: iClient[] | [];
 }
 export interface iClient {
   id: number;
@@ -25,6 +24,7 @@ export interface iClient {
   workshop?: [iWorkShopInput];
   workspaceType?: ENUM_TYPE;
   client?: iClient;
+  members?:[iClient];
 }
 export interface iInput{
   input:iClientEntry

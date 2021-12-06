@@ -8,20 +8,23 @@ import { workspaceSelect } from "../workspaceSelect";
 import { ROUTE_CHANNEL } from "../Query/getChannel";
 
 
-export async function createChannel({ client, appeal, workshop, workspaceType }: iType.iMessage) {
+export async function createChannel({ client, appeal, workshop, workspaceType, members }: iType.iMessage) {
   let data;
 
-  if (workspaceType === iType.ENUM_TYPE.APPEAL && appeal && client && !R.isEmpty(workshop)) {
-    data = workspaceSelect({ client, appeal, workshop, workspaceType });
+  if (workspaceType === iType.ENUM_TYPE.APPEAL && appeal && client?.id && !R.isEmpty(workshop) && !R.isEmpty(members)) {
+    data = workspaceSelect({ client, appeal, workshop, workspaceType, members });
   }
-  if (workspaceType === iType.ENUM_TYPE.ADMIN && client?.id) {
-    data = workspaceSelect({ client, appeal, workshop, workspaceType });
+  if (workspaceType === iType.ENUM_TYPE.ADMIN && client?.id && !R.isEmpty(members)) {
+    data = workspaceSelect({ client, appeal, workshop, workspaceType, members });
   }
   if (workspaceType === iType.ENUM_TYPE.GARAGE && !R.isEmpty(workshop)) {
-    data = workspaceSelect({ client, appeal, workshop, workspaceType });
+    data = workspaceSelect({ client, appeal, workshop, workspaceType, members });
+  }
+  if (workspaceType === iType.ENUM_TYPE.CLIENT && !R.isEmpty(workshop) && !R.isEmpty(workshop) && client?.id) {
+    data = workspaceSelect({ client, appeal, workshop, workspaceType, members });
   }
   if (!data) {
-    throw new Error('params not valid');
+    throw new Error('params create not valid');
   }
 
   const messageChannel = workspaceSelect({ client, appeal, workshop, workspaceType });

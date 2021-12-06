@@ -1,9 +1,7 @@
 import { gql } from "apollo-server-express";
 
 export const schema = gql`
-  input WorkNameInput {
-    address: String
-    name: String
+  input MemberUser{
     first: String
     last: String
     middle: String
@@ -13,6 +11,13 @@ export const schema = gql`
     id: Int
     name: String
     phone: String
+    address: String
+  }
+
+  input WorkShopMemberInput {
+    id: Int
+    name: MemberUser
+    phone: String
   }
 
   input MessageInput {
@@ -20,6 +25,7 @@ export const schema = gql`
     workshop: [WorkShopInput]
     workspaceType: ENUM_TYPE 
     client: WorkShopInput
+    members:[WorkShopMemberInput]
   }
 
   enum ENUM_TYPE {
@@ -90,22 +96,11 @@ export const schema = gql`
     appealId:Int
     clientId:Int
     idChannel: String!
-    members: [Members]
+    members: [UserClient]
     workshop:[Garage]
     admin:Boolean
     workspaceType:ENUM_TYPE
     uuid:String
-  }
-
-  type Members{
-    client: [User]
-    garage:[User]
-  }
-
-  type Workspace {
-    type: String
-    client: User
-    garage:[Garage]
   }
 
   type Garage{
@@ -115,13 +110,13 @@ export const schema = gql`
     address:String
   }
 
-  type User {
+  type UserClient {
     id: Int
-    name: Name
+    name: NameClient
     phone: String
   }
 
-  type Name {
+  type NameClient {
     first: String
     last: String
     middle: String

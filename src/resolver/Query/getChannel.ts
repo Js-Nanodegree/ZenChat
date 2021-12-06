@@ -10,7 +10,6 @@ import * as iType from "../interface";
 import { getAllAdminChannel } from "./getAllAdminChannel";
 import { getAllAppealChannel } from "./getAllAppealChannel";
 import { getAllGarageChannel } from "./getAllGarageChannel";
-import { resultString } from "./resultString";
 import * as R from 'ramda'
 
 export const ROUTE_CHANNEL = "CHANNEL_LIST";

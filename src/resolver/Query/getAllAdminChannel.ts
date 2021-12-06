@@ -18,7 +18,6 @@ export async function getAllAdminChannel({ client, workspaceType=iType.ENUM_TYPE
   );
 
   if (workspaceType === iType.ENUM_TYPE.ADMIN) {
-    console.log('3123')
     commentsRef = searchRefChannel(
       "admin",
       true,
