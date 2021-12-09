@@ -19,7 +19,7 @@ export const workspaceSelect = (input: any) => {
   if (input.members) {
     const data = {
       idChannel: uuid(),
-      workshop: input.workspaceType !== iType.ENUM_TYPE.ADMIN == input.workshop,
+      workshop: input.workshop,
       workspaceType: input.workspaceType,
       admin: input.workspaceType === iType.ENUM_TYPE.ADMIN,
       clientId: input.workspaceType !== iType.ENUM_TYPE.GARAGE && input?.client?.id,

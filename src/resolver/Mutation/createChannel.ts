@@ -40,7 +40,7 @@ export async function createChannel({ client, appeal, workshop, workspaceType, m
 
     const newPostRef = push(commentsRef);
     onChildAdded(commentsRef,  (data) => {
-      if (data?.val()?.idChannel) {
+      if (data?.val()?.idChannel===messageChannel.idChannel) {
         resolve({ ...data.val(), uuid: data.key });
       }
     });
