@@ -50,7 +50,10 @@ export const resolvers = {
       context: any,
       info: any
     ) => {
-      return await createChannel(input);
+      const data: any = await createChannel(input);
+      await sendMessage({ message: 'create message', sharedMessage: { uuid: "", message: "" }, write: "", channel: data.idChannel })
+
+      return data
     },
     sendMessage: async (
       root: any,

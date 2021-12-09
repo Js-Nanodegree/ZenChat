@@ -4,7 +4,7 @@ import { searchRefChannel, ROUTE_CHANNEL } from "./getChannel";
 import { resultString } from "./resultString";
 
 
-export async function getAllGarageChannel({ workshop, workspaceType }: iType.iMessage) {
+export async function getAllGarageChannel({ workshop, workspaceType,members }: iType.iMessage) {
   if (R.isEmpty(workshop)) {
     throw new Error('workshop empty');
   }

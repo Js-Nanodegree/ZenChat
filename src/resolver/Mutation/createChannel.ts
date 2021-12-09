@@ -6,6 +6,7 @@ import * as R from "ramda";
 import * as iType from "../interface";
 import { workspaceSelect } from "../workspaceSelect";
 import { ROUTE_CHANNEL } from "../Query/getChannel";
+import { sendMessage } from "../sendMessage";
 
 
 export async function createChannel({ client, appeal, workshop, workspaceType, members }: iType.iMessage) {
@@ -17,7 +18,7 @@ export async function createChannel({ client, appeal, workshop, workspaceType, m
   if (workspaceType === iType.ENUM_TYPE.ADMIN && client?.id && !R.isEmpty(members)) {
     data = workspaceSelect({ client, appeal, workshop, workspaceType, members });
   }
-  if (workspaceType === iType.ENUM_TYPE.GARAGE && !R.isEmpty(workshop)) {
+  if (workspaceType === iType.ENUM_TYPE.GARAGE && !R.isEmpty(workshop) && !R.isEmpty(members)) {
     data = workspaceSelect({ client, appeal, workshop, workspaceType, members });
   }
   if (workspaceType === iType.ENUM_TYPE.CLIENT && !R.isEmpty(workshop) && !R.isEmpty(workshop) && client?.id) {
@@ -27,7 +28,7 @@ export async function createChannel({ client, appeal, workshop, workspaceType, m
     throw new Error('params create not valid');
   }
 
-  const messageChannel = workspaceSelect({ client, appeal, workshop, workspaceType });
+  const messageChannel = workspaceSelect({ client, appeal, workshop, workspaceType, members});
 
   return new Promise(async (resolve, reject) => {
     const db = getDatabase();
@@ -38,8 +39,8 @@ export async function createChannel({ client, appeal, workshop, workspaceType, m
     }
 
     const newPostRef = push(commentsRef);
-    onChildAdded(commentsRef, (data) => {
-      if (messageChannel?.channel === data?.val()?.channel) {
+    onChildAdded(commentsRef,  (data) => {
+      if (data?.val()?.idChannel) {
         resolve({ ...data.val(), uuid: data.key });
       }
     });

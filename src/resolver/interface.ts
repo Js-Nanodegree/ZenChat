@@ -10,19 +10,19 @@ export interface iClientName {
   middle?: String;
 }
 export interface iWorkShopInput {
-  id: Number;
+  id: String;
   name?: String;
   phone?: String;
 }
 export interface iClient {
-  id: number;
+  id: string;
   phone?: String;
   name?: iClientName;
 }
  export interface iMessage {
   appeal?: Number;
   workshop?: [iWorkShopInput];
-  workspaceType?: ENUM_TYPE;
+  workspaceType: ENUM_TYPE;
   client?: iClient;
   members?:[iClient];
 }

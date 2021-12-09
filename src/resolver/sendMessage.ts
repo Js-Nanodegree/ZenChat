@@ -2,7 +2,6 @@ import { Query } from "./Query/getChannel";
 import * as R from "ramda";
 import { getDatabase, push, ref, set } from "firebase/database";
 import { ROUTE_MESSAGE } from "./index";
-import * as iType from "./interface";
 
 
 export const sendMessage = async ({ message, sharedMessage, write, channel }: any) => {
@@ -12,6 +11,8 @@ export const sendMessage = async ({ message, sharedMessage, write, channel }: an
     message,
     sharedMessage,
     write,
+    createdAt:new Date(),
+    read:false
   };
 
   return new Promise(async (resolve, reject) => {

@@ -101,6 +101,8 @@ export const schema = gql`
     admin:Boolean
     workspaceType:ENUM_TYPE
     uuid:String
+    createdAt:String
+    read:Boolean
   }
 
   type Garage{
